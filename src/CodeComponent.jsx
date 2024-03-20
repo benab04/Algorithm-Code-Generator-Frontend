@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GetCode from "./GetCode";
 import "./styles/CodeComponent.css";
+import Loader from "./Loader";
 function CodeComponent() {
   const base_url = process.env.REACT_APP_BACKEND_URL;
   const [userInput, setUserInput] = useState("");
@@ -15,6 +16,21 @@ function CodeComponent() {
   sum = calculate_sum(num1, num2)
   print("The sum is:", sum)`);
   const [remainingCredits, setRemainingCredits] = useState(null);
+  const [received, setReceived] = useState(false);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetch(base_url)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data) {
+            console.log(data);
+            setReceived(true);
+            clearInterval(interval);
+          }
+        })
+        .catch((err) => console.log(err));
+    }, 3000);
+  }, []);
 
   const handleSubmit = () => {
     const formData = new FormData();
@@ -65,8 +81,8 @@ function CodeComponent() {
         <button className="submit-btn" onClick={() => handleSubmit()}>
           Submit
         </button>
-
-        {code !== null && (
+        {!received && <Loader />}
+        {code !== null && received && (
           <GetCode
             language={selectedLanguage}
             code={code}
