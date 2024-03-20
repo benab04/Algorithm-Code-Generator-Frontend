@@ -1,7 +1,12 @@
 import "./App.css";
+import CodeComponent from "./CodeComponent";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <CodeComponent />
+    </div>
+  );
 }
 
 export default App;
