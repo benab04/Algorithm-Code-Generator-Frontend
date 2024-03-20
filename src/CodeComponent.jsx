@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import GetCode from "./GetCode";
 import "./styles/CodeComponent.css";
 function CodeComponent() {
+  const base_url = process.env.REACT_APP_BACKEND_URL;
   const [userInput, setUserInput] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("javascript");
   const [code, setCode] =
@@ -20,7 +21,7 @@ function CodeComponent() {
     formData.append("text", userInput);
     formData.append("language", selectedLanguage);
 
-    fetch("http://localhost:8000/", {
+    fetch(base_url, {
       method: "POST",
       body: formData,
     })
