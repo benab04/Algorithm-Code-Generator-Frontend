@@ -41,6 +41,7 @@ select {
     border-radius: 5px;
     background-color: #000;
     color: #6a0dad;
+    font-weight: 600;
 }
 .button-div{
     display: flex;
