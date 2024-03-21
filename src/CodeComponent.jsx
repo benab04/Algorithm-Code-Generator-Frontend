@@ -52,9 +52,6 @@ function CodeComponent() {
       });
   };
 
-  console.log("Code:", code);
-  console.log("Remaining Credits:", remainingCredits);
-
   return (
     <div class="contain">
       <div class="form-wrapper">
