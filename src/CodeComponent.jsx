@@ -34,6 +34,7 @@ function CodeComponent() {
 
   const handleSubmit = () => {
     const formData = new FormData();
+    setReceived(false);
     formData.append("text", userInput);
     formData.append("language", selectedLanguage);
 
@@ -45,6 +46,7 @@ function CodeComponent() {
       .then((data) => {
         const receivedCode = data.code;
         setCode(receivedCode);
+        setReceived(true);
         setRemainingCredits(data.remaining_credits);
       })
       .catch((error) => {
